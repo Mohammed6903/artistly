@@ -1,9 +1,8 @@
 "use client"
 
-import { Hero } from "@/components/hero"
-import { Categories } from "@/components/categories"
-import { CallToAction } from "@/components/call-to-action"
-import { Footer } from "@/components/footer"
+import { Hero } from "@/components/common/hero"
+import { Categories } from "@/components/common/categories"
+import { CallToAction } from "@/components/common/call-to-action"
 
 export default function HomePage() {
 
@@ -12,7 +11,6 @@ export default function HomePage() {
       <Hero />
       <Categories />
       <CallToAction />
-      <Footer />
     </div>
   )
 }

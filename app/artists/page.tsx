@@ -1,9 +1,8 @@
 "use client"
 
 import { useState, useMemo } from "react"
-import { Footer } from "@/components/footer"
-import { ArtistCard } from "@/components/artist-card"
-import { FilterBlock } from "@/components/filter-block"
+import { ArtistCard } from "@/components/artist/artist-card"
+import { FilterBlock } from "@/components/form/filter-block"
 import { Button } from "@/components/ui/button"
 import { Grid, List, Search, Filter, X } from "lucide-react"
 import { Input } from "@/components/ui/input"
@@ -21,7 +20,6 @@ export default function ArtistsPage() {
     priceRange: "all",
   })
 
-  // Filter and search logic
   const filteredArtists = useMemo(() => {
     return artistsData.filter((artist) => {
       const matchesSearch =
@@ -360,7 +358,6 @@ export default function ArtistsPage() {
         </div>
       </main>
 
-      <Footer />
     </div>
   )
 }

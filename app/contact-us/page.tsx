@@ -1,7 +1,6 @@
 "use client"
 import React, { useState } from "react"
 import { useForm } from "react-hook-form"
-import * as yup from "yup"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { motion } from "framer-motion"
 import {
@@ -17,15 +16,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
-
-const contactSchema = yup.object().shape({
-  name: yup.string().required("Name is required"),
-  email: yup.string().email("Invalid email").required("Email is required"),
-  subject: yup.string().required("Subject is required"),
-  message: yup.string().required("Message is required"),
-})
+import { contactSchema, ContactFormData } from "@/lib/validation/contact"
 
 export default function ContactUsPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -39,7 +30,7 @@ export default function ContactUsPage() {
     resolver: yupResolver(contactSchema),
   })
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true)
     await new Promise(resolve => setTimeout(resolve, 1000))
     console.log("Contact form submitted:", data)
@@ -92,7 +83,6 @@ export default function ContactUsPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
 
       <main className="pt-16 sm:pt-20 lg:pt-24">
         {/* Hero Section */}
@@ -268,8 +258,6 @@ export default function ContactUsPage() {
           </div>
         </section>
       </main>
-
-      <Footer />
     </div>
   )
 }

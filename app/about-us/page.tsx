@@ -13,8 +13,6 @@ import {
   Eye,
   Shield
 } from "lucide-react"
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
 
 export default function AboutPage() {
   const containerVariants = {
@@ -83,7 +81,6 @@ export default function AboutPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
 
       <main className="pt-16 sm:pt-20 lg:pt-24">
         {/* Hero Section */}
@@ -283,7 +280,6 @@ export default function AboutPage() {
         </section>
       </main>
 
-      <Footer />
     </div>
   )
 }
