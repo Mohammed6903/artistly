@@ -37,7 +37,7 @@ export function Footer() {
           <div>
             <h4 className="font-bold mb-6 text-foreground">Quick Links</h4>
             <div className="space-y-3">
-              {navLinks.map((link, index) => (
+              {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
