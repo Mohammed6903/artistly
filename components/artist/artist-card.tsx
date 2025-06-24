@@ -25,10 +25,17 @@ export function ArtistCard({ artist, viewMode }: ArtistCardProps) {
       <motion.div whileHover={{ scale: 1.01 }} transition={{ duration: 0.2 }}>
         <Card className="bg-card border-border hover:shadow-lg transition-all duration-300">
           <CardContent className="p-6">
-            <div className="flex flex-col md:flex-row gap-6">
+            <article className="flex flex-col md:flex-row gap-6">
               {/* Artist Image */}
               <div className="w-full md:w-32 h-48 md:h-32 bg-muted rounded-lg flex items-center justify-center flex-shrink-0">
-                {isUrl ? (<Image src={artist.avatar} alt={artist.name} width={128} height={128} className="rounded-lg" />) : (
+                {isUrl ? (
+                  <Image src={artist.avatar}
+                    alt={artist.name}
+                    width={128}
+                    height={128}
+                    className="rounded-lg"
+                  />
+                ) : (
                   <div className="text-4xl">{artist.avatar}</div>
                 )}
               </div>
@@ -38,7 +45,7 @@ export function ArtistCard({ artist, viewMode }: ArtistCardProps) {
                 <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-2">
-                      <h3 className="text-xl font-bold text-card-foreground">{artist.name}</h3>
+                      <h2 className="text-xl font-bold text-card-foreground">{artist.name}</h2>
                       <div className="flex items-center gap-1">
                         <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                         <span className="text-sm text-muted-foreground">{artist.rating}</span>
@@ -73,7 +80,7 @@ export function ArtistCard({ artist, viewMode }: ArtistCardProps) {
                   </div>
                 </div>
               </div>
-            </div>
+            </article>
           </CardContent>
         </Card>
       </motion.div>
@@ -86,26 +93,27 @@ export function ArtistCard({ artist, viewMode }: ArtistCardProps) {
         <CardContent className="p-6">
           {/* Artist Image */}
 
-          <div className="w-full h-48 rounded-lg flex items-center justify-center flex-shrink-0">
+          <article className="w-full h-48 rounded-lg flex items-center justify-center flex-shrink-0">
             {isUrl ? (
               <Image
                 src={artist.avatar}
-                alt={artist.name}
+                alt={`Portrait of ${artist.name}, a ${artist.category} in ${artist.location}`}
                 width={128}
                 height={128}
                 className="rounded-lg object-contain"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
             ) : (
               <div className="text-4xl">{artist.avatar}</div>
             )}
-          </div>
+          </article>
 
 
 
           {/* Artist Info */}
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <h3 className="text-lg font-bold text-card-foreground truncate">{artist.name}</h3>
+              <h2 className="text-lg font-bold text-card-foreground truncate">{artist.name}</h2>
               <div className="flex items-center gap-1">
                 <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                 <span className="text-sm text-muted-foreground">{artist.rating}</span>
