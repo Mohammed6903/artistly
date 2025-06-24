@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
+import Link from "next/link"
 
 export function Footer() {
   const navLinks = [
@@ -38,13 +39,13 @@ export function Footer() {
             <h4 className="font-bold mb-6 text-foreground">Quick Links</h4>
             <div className="space-y-3">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.name}
                   href={link.href}
                   className="block text-muted-foreground hover:text-foreground transition-colors duration-200"
                 >
                   {link.name}
-                </a>
+                </Link>
               ))}
             </div>
           </div>
@@ -52,13 +53,13 @@ export function Footer() {
             <h4 className="font-bold mb-6 text-foreground">Categories</h4>
             <div className="space-y-3">
               {categories.map((category) => (
-                <a
+                <Link
                   key={category}
                   href="#"
                   className="block text-muted-foreground hover:text-foreground transition-colors duration-200"
                 >
                   {category}
-                </a>
+                </Link>
               ))}
             </div>
           </div>

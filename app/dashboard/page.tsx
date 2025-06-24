@@ -16,6 +16,7 @@ export default function ManagerDashboardPage() {
   const [filteredSubmissions, setFilteredSubmissions] = useState<HiredArtist[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
+  const [verifiedAuth, setVerifiedAuth] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   const { currentUser } = useAuth()
@@ -26,16 +27,20 @@ export default function ManagerDashboardPage() {
       router.push("/login")
     } else if (currentUser.role !== "admin") {
       router.push("/not-authorized")
+    } else {
+      setVerifiedAuth(true);
     }
   }, [currentUser, router])
 
   useEffect(() => {
-    setTimeout(() => {
-      setSubmissions(hiredArtistsData);
-      setFilteredSubmissions(hiredArtistsData);
-      setIsLoading(false);
-    }, 1000);
-  }, []);
+    if (verifiedAuth) {
+      setTimeout(() => {
+        setSubmissions(hiredArtistsData);
+        setFilteredSubmissions(hiredArtistsData);
+        setIsLoading(false);
+      }, 1000);
+    }
+  }, [verifiedAuth]);
 
   useEffect(() => {
     let filtered = submissions;
@@ -85,6 +90,14 @@ export default function ManagerDashboardPage() {
       </Badge>
     );
   };
+
+  if (!verifiedAuth) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-muted-foreground">Checking access...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-7xl mx-auto mt-12 py-8 px-4 space-y-8">

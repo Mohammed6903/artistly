@@ -7,12 +7,30 @@ import { Menu, Moon, Sun, X } from "lucide-react"
 import { motion } from "framer-motion"
 import { useTheme } from "next-themes"
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden"
+import Link from "next/link"
+import { UserCircle } from "lucide-react"
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu"
+import { useAuth } from "@/context/auth-context"
+import { useRouter } from "next/navigation"
+
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
+
+  const { currentUser, logout } = useAuth()
+  const router = useRouter()
+
+  const handleLogout = () => {
+    logout()
+    router.push("/")
+  }
+
+  const handleLogin = () => {
+    router.push("/login")
+  }
 
   useEffect(() => {
     setMounted(true)
@@ -63,7 +81,7 @@ export function Header() {
             <div className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 bg-foreground rounded-lg flex items-center justify-center">
               <span className="text-background font-bold text-sm sm:text-base md:text-lg">A</span>
             </div>
-            <span className="text-lg sm:text-xl md:text-2xl font-bold text-foreground">Artistly</span>
+            <Link href="/" className="text-lg sm:text-xl md:text-2xl font-bold text-foreground no-underline">Artistly</Link>
           </motion.div>
 
           {/* Desktop Navigation */}
@@ -82,6 +100,31 @@ export function Header() {
               </motion.a>
             ))}
 
+            {currentUser ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="icon" className="h-9 w-9">
+                    <UserCircle className="h-5 w-5" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem onClick={handleLogout}>Logout</DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <motion.a
+                key="login"
+                href="/login"
+                className="text-muted-foreground hover:text-foreground font-medium transition-colors duration-200 relative group text-sm xl:text-base"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 5 * 0.1 }}
+              >
+                Login
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-foreground transition-all duration-200 group-hover:w-full"></span>
+              </motion.a>
+            )}
+
             {/* Desktop Theme Toggle */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
@@ -92,7 +135,7 @@ export function Header() {
                 variant="ghost"
                 size="icon"
                 onClick={toggleTheme}
-                className="ml-4 bg-accent hover:bg-primary hover:text-primary-foreground transition-all duration-200 h-9 w-9"
+                className="bg-accent hover:bg-primary hover:text-primary-foreground transition-all duration-200 h-9 w-9"
                 aria-label="Toggle theme"
               >
                 {mounted && (
@@ -138,7 +181,7 @@ export function Header() {
               </SheetTrigger>
               <SheetContent
                 side="right"
-                className="bg-background/95 backdrop-blur-md border-l border-border w-[280px] sm:w-[320px] p-0"
+                className="bg-background/95 backdrop-blur-md border-l border-border w-[280px] sm:w-[320px] p-0 [&>button:first-of-type]:hidden"
               >
                 <SheetHeader className="px-6 py-4 border-b border-border">
                   <div className="flex items-center justify-between">
@@ -158,6 +201,7 @@ export function Header() {
                         <X className="h-4 w-4" />
                       </Button>
                     </SheetClose>
+
                   </div>
                   <VisuallyHidden>
                     <SheetTitle>Navigation Menu</SheetTitle>
@@ -170,7 +214,7 @@ export function Header() {
                       key={link.name}
                       href={link.href}
                       onClick={handleMobileNavClick}
-                      className="text-lg font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 py-3 border-b border-border/50 last:border-b-0"
+                      className="text-lg font-medium text-foreground no-underline hover:text-background transition-colors duration-200 py-3 border-none"
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.3, delay: index * 0.1 }}
@@ -178,6 +222,29 @@ export function Header() {
                       {link.name}
                     </motion.a>
                   ))}
+                  {currentUser ? (
+                    <Button
+                      variant="outline"
+                      onClick={() => {
+                        handleLogout()
+                        setIsMobileMenuOpen(false)
+                      }}
+                      className="mt-4"
+                    >
+                      Logout
+                    </Button>
+                  ) : (
+                    <Button
+                      onClick={() => {
+                        handleLogin()
+                        setIsMobileMenuOpen(false)
+                      }}
+                      className="mt-4"
+                    >
+                      Login
+                    </Button>
+                  )}
+
                 </div>
               </SheetContent>
             </Sheet>
