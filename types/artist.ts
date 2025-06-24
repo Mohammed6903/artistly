@@ -11,6 +11,7 @@ export interface Artist {
   avatar: string
   description: string
   specialties: string[]
+  languages: string[]
   availability: string
 }
 

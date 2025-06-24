@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge"
 import { MapPin, Star, MessageCircle } from "lucide-react"
 import { motion } from "framer-motion"
 import type { Artist } from "@/types/artist"
+import Image from "next/image"
 
 interface ArtistCardProps {
   artist: Artist
@@ -17,6 +18,8 @@ export function ArtistCard({ artist, viewMode }: ArtistCardProps) {
     return `$${min.toLocaleString()} - $${max.toLocaleString()}`
   }
 
+  const isUrl = artist.avatar.startsWith("http") || artist.avatar.startsWith("/")
+
   if (viewMode === "list") {
     return (
       <motion.div whileHover={{ scale: 1.01 }} transition={{ duration: 0.2 }}>
@@ -25,7 +28,9 @@ export function ArtistCard({ artist, viewMode }: ArtistCardProps) {
             <div className="flex flex-col md:flex-row gap-6">
               {/* Artist Image */}
               <div className="w-full md:w-32 h-48 md:h-32 bg-muted rounded-lg flex items-center justify-center flex-shrink-0">
-                <div className="text-4xl">{artist.avatar}</div>
+                {isUrl ? (<Image src={artist.avatar} alt={artist.name} width={128} height={128} className="rounded-lg" />) : (
+                  <div className="text-4xl">{artist.avatar}</div>
+                )}
               </div>
 
               {/* Artist Info */}
@@ -79,9 +84,22 @@ export function ArtistCard({ artist, viewMode }: ArtistCardProps) {
       <Card className="bg-card border-border hover:shadow-lg transition-all duration-300 h-full">
         <CardContent className="p-6">
           {/* Artist Image */}
-          <div className="w-full h-48 bg-muted rounded-lg flex items-center justify-center mb-4">
-            <div className="text-6xl">{artist.avatar}</div>
+
+          <div className="w-full h-48 rounded-lg flex items-center justify-center flex-shrink-0">
+            {isUrl ? (
+              <Image
+                src={artist.avatar}
+                alt={artist.name}
+                width={128}
+                height={128}
+                className="rounded-lg object-contain"
+              />
+            ) : (
+              <div className="text-4xl">{artist.avatar}</div>
+            )}
           </div>
+
+
 
           {/* Artist Info */}
           <div className="space-y-3">

@@ -13,7 +13,7 @@ export function Footer() {
   const categories = ["Singers", "Dancers", "Speakers", "DJs"]
 
   return (
-    <footer className="bg-secondary text-secondary-foreground py-16">
+    <footer className="bg-background py-16">
       <div className="container mx-auto px-4">
         <motion.div
           className="grid grid-cols-1 md:grid-cols-4 gap-8"

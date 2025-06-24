@@ -5,6 +5,10 @@ export const artistSchema = yup.object().shape({
   name: yup.string().required("Name is required"),
   description: yup.string().required("Description is required"),
   category: yup.string().required("Category is required"),
+  languages: yup
+    .array()
+    .of(yup.string())
+    .min(1, "Select at least one language"),
   specialties: yup
     .array()
     .of(yup.string())

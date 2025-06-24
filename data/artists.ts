@@ -12,6 +12,11 @@ export const artistsData: Artist[] = [
     description:
       "Professional vocalist with 10+ years of experience in jazz, pop, and R&B. Perfect for weddings, corporate events, and private parties.",
     specialties: ["Jazz", "Pop", "R&B"],
+    languages: [
+      "English",
+      "Marathi",
+      "Hindi"
+    ],
     availability: "Available",
   },
   {
@@ -25,6 +30,11 @@ export const artistsData: Artist[] = [
     description:
       "High-energy DJ specializing in electronic, hip-hop, and Latin music. Bringing the party to life with professional sound equipment.",
     specialties: ["Electronic", "Hip-Hop", "Latin"],
+    languages: [
+      "English",
+      "Marathi",
+      "Hindi"
+    ],
     availability: "Available",
   },
   {
@@ -38,6 +48,11 @@ export const artistsData: Artist[] = [
     description:
       "Contemporary and ballet dancer with choreography expertise. Available for performances, workshops, and special events.",
     specialties: ["Contemporary", "Ballet", "Choreography"],
+    languages: [
+      "English",
+      "Marathi",
+      "Hindi"
+    ],
     availability: "Available",
   },
   {
@@ -51,6 +66,11 @@ export const artistsData: Artist[] = [
     description:
       "Motivational speaker and business consultant with expertise in leadership, innovation, and personal development.",
     specialties: ["Leadership", "Innovation", "Personal Development"],
+    languages: [
+      "English",
+      "Marathi",
+      "Hindi"
+    ],
     availability: "Available",
   },
   {
@@ -64,6 +84,11 @@ export const artistsData: Artist[] = [
     description:
       "Country and folk singer-songwriter with original compositions. Perfect for intimate venues and acoustic performances.",
     specialties: ["Country", "Folk", "Acoustic"],
+    languages: [
+      "English",
+      "Marathi",
+      "Hindi"
+    ],
     availability: "Available",
   },
   {
@@ -77,6 +102,11 @@ export const artistsData: Artist[] = [
     description:
       "Multi-instrumentalist specializing in guitar, piano, and vocals. Versatile performer for any musical style or event.",
     specialties: ["Guitar", "Piano", "Vocals"],
+    languages: [
+      "English",
+      "Marathi",
+      "Hindi"
+    ],
     availability: "Available",
   },
   {
@@ -90,6 +120,11 @@ export const artistsData: Artist[] = [
     description:
       "Professional salsa and ballroom dancer with competition experience. Offers performances and dance lessons.",
     specialties: ["Salsa", "Ballroom", "Latin Dance"],
+    languages: [
+      "English",
+      "Marathi",
+      "Hindi"
+    ],
     availability: "Available",
   },
   {
@@ -104,9 +139,19 @@ export const artistsData: Artist[] = [
       "Wedding and corporate event DJ with extensive music library. Specializes in creating the perfect atmosphere for any occasion.",
     specialties: ["Weddings", "Corporate", "Top 40"],
     availability: "Available",
+    languages: [
+      "English",
+      "Marathi",
+      "Hindi"
+    ],
   },
   {
     id: "9",
+    languages: [
+      "English",
+      "Marathi",
+      "Hindi"
+    ],
     name: "Rachel Kim",
     category: "Speaker",
     location: "Chicago",
@@ -129,6 +174,11 @@ export const artistsData: Artist[] = [
       "Jazz trumpeter and band leader with classical training. Perfect for elegant events and sophisticated audiences.",
     specialties: ["Jazz", "Classical", "Big Band"],
     availability: "Available",
+    languages: [
+      "English",
+      "Marathi",
+      "Hindi"
+    ],
   },
   {
     id: "11",
@@ -142,6 +192,11 @@ export const artistsData: Artist[] = [
       "Opera-trained vocalist with crossover appeal. Performs classical, musical theater, and contemporary pieces.",
     specialties: ["Opera", "Musical Theater", "Classical"],
     availability: "Available",
+    languages: [
+      "English",
+      "Marathi",
+      "Hindi"
+    ],
   },
   {
     id: "12",
@@ -154,6 +209,11 @@ export const artistsData: Artist[] = [
     description:
       "Indie and alternative music DJ perfect for festivals, clubs, and underground events. Curates unique musical experiences.",
     specialties: ["Indie", "Alternative", "Electronic"],
+    languages: [
+      "English",
+      "Marathi",
+      "Hindi"
+    ],
     availability: "Available",
   },
 ]
@@ -161,6 +221,11 @@ export const artistsData: Artist[] = [
 export const hiredArtistsData: HiredArtist[] = [
   {
     id: "a1",
+    languages: [
+      "English",
+      "Marathi",
+      "Hindi"
+    ],
     name: "Luna Martinez",
     category: "Singer",
     location: "Nashville",
@@ -179,6 +244,11 @@ export const hiredArtistsData: HiredArtist[] = [
   },
   {
     id: "a2",
+    languages: [
+      "English",
+      "Marathi",
+      "Hindi"
+    ],
     name: "Michael Brown",
     category: "DJ",
     location: "New York",
@@ -197,6 +267,11 @@ export const hiredArtistsData: HiredArtist[] = [
   },
   {
     id: "a3",
+    languages: [
+      "English",
+      "Marathi",
+      "Hindi"
+    ],
     name: "Isabella Garcia",
     category: "Dancer",
     location: "Los Angeles",
@@ -215,6 +290,11 @@ export const hiredArtistsData: HiredArtist[] = [
   },
   {
     id: "a4",
+    languages: [
+      "English",
+      "Marathi",
+      "Hindi"
+    ],
     name: "Dr. James Wilson",
     category: "Speaker",
     location: "Miami",
@@ -233,6 +313,11 @@ export const hiredArtistsData: HiredArtist[] = [
   },
   {
     id: "a5",
+    languages: [
+      "English",
+      "Marathi",
+      "Hindi"
+    ],
     name: "Emily Chen",
     category: "Dancer",
     location: "Chicago",
@@ -251,6 +336,11 @@ export const hiredArtistsData: HiredArtist[] = [
   },
   {
     id: "a6",
+    languages: [
+      "English",
+      "Marathi",
+      "Hindi"
+    ],
     name: "Alex Thompson",
     category: "Musician",
     location: "Austin",

@@ -1,54 +1,75 @@
 "use client"
 
-import { useState, useMemo } from "react"
+import { useState, useMemo, useEffect } from "react"
 import { ArtistCard } from "@/components/artist/artist-card"
 import { FilterBlock } from "@/components/form/filter-block"
 import { Button } from "@/components/ui/button"
 import { Grid, List, Search, Filter, X } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { motion, AnimatePresence } from "framer-motion"
-import { artistsData } from "@/data/artists"
-import type { FilterOptions } from "@/types/artist"
+import type { FilterOptions, Artist } from "@/types/artist"
 
 export default function ArtistsPage() {
   const [searchTerm, setSearchTerm] = useState("")
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid")
   const [showMobileFilters, setShowMobileFilters] = useState(false)
+  const [artists, setArtists] = useState<Artist[]>([]);
   const [filters, setFilters] = useState<FilterOptions>({
     category: "all",
     location: "all",
     priceRange: "all",
   })
 
-  const filteredArtists = useMemo(() => {
-    return artistsData.filter((artist) => {
-      const matchesSearch =
-        artist.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        artist.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        artist.location.toLowerCase().includes(searchTerm.toLowerCase())
-
-      const matchesCategory = filters.category === "all" || artist.category === filters.category
-      const matchesLocation = filters.location === "all" || artist.location === filters.location
-
-      let matchesPriceRange = true
-      if (filters.priceRange !== "all") {
-        const price = artist.priceRange.min
-        switch (filters.priceRange) {
-          case "budget":
-            matchesPriceRange = price < 500
-            break
-          case "mid":
-            matchesPriceRange = price >= 500 && price < 1500
-            break
-          case "premium":
-            matchesPriceRange = price >= 1500
-            break
+  useEffect(() => {
+    const fetchArtists = async () => {
+      try {
+        const res = await fetch("https://685a52ac9f6ef9611155e080.mockapi.io/artists");
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        const json = await res.json();
+        setArtists(json);
+      } catch (error) {
+        if (error instanceof Error) {
+          throw new Error(error.message);
         }
       }
+    }
 
-      return matchesSearch && matchesCategory && matchesLocation && matchesPriceRange
-    })
-  }, [searchTerm, filters])
+    fetchArtists();
+  }, [])
+
+  const filteredArtists = useMemo(() => {
+    if (artists) {
+      return artists.filter((artist: Artist) => {
+        const matchesSearch =
+          artist.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          artist.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          artist.location.toLowerCase().includes(searchTerm.toLowerCase())
+
+        const matchesCategory = filters.category === "all" || artist.category === filters.category
+        const matchesLocation = filters.location === "all" || artist.location === filters.location
+
+        let matchesPriceRange = true
+        if (filters.priceRange !== "all") {
+          const price = artist.priceRange.min
+          switch (filters.priceRange) {
+            case "budget":
+              matchesPriceRange = price < 500
+              break
+            case "mid":
+              matchesPriceRange = price >= 500 && price < 1500
+              break
+            case "premium":
+              matchesPriceRange = price >= 1500
+              break
+          }
+        }
+
+        return matchesSearch && matchesCategory && matchesLocation && matchesPriceRange
+      })
+    }
+  }, [searchTerm, filters, artists])
 
   const handleFilterChange = (filterType: keyof FilterOptions, value: string) => {
     setFilters((prev) => ({
@@ -106,11 +127,11 @@ export default function ArtistsPage() {
             </div>
 
             {/* Controls */}
-            <div className="flex md:pl-12 flex-col sm:flex-row items-start sm:items-center gap-2 w-full sm:w-auto">
+            <div className="flex sm:pl-12 flex-col sm:flex-row items-start sm:items-center gap-2 w-full sm:w-auto">
               <Button
                 variant="outline"
                 onClick={() => setShowMobileFilters(true)}
-                className="flex md:hidden items-center gap-2 h-10 sm:h-11 px-3 sm:px-4"
+                className="flex lg:hidden items-center gap-2 h-10 sm:h-11 px-3 sm:px-4"
               >
                 <Filter className="w-4 h-4" />
                 <span className="text-sm">Filters</span>
@@ -318,12 +339,12 @@ export default function ArtistsPage() {
               {/* Results Header */}
               <div className="flex items-center justify-between mb-4 sm:mb-6">
                 <p className="text-sm sm:text-base text-muted-foreground">
-                  {filteredArtists.length} artist{filteredArtists.length !== 1 ? "s" : ""} found
+                  {filteredArtists?.length} artist{filteredArtists?.length !== 1 ? "s" : ""} found
                 </p>
               </div>
 
               {/* Artists Grid */}
-              {filteredArtists.length > 0 ? (
+              {filteredArtists && filteredArtists.length > 0 ? (
                 <div
                   className={`grid gap-4 sm:gap-6 ${viewMode === "grid"
                     ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3"

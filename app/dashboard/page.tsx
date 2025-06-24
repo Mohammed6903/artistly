@@ -9,6 +9,7 @@ import { Search, Filter, Download, Users, Calendar, DollarSign, MapPin } from "l
 import { useRouter } from "next/navigation";
 import { type HiredArtist } from "@/types/artist";
 import { hiredArtistsData } from "@/data/artists";
+import { useAuth } from "@/context/auth-context"
 
 export default function ManagerDashboardPage() {
   const [submissions, setSubmissions] = useState<HiredArtist[]>([]);
@@ -17,7 +18,16 @@ export default function ManagerDashboardPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [isLoading, setIsLoading] = useState(true);
 
+  const { currentUser } = useAuth()
   const router = useRouter();
+
+  useEffect(() => {
+    if (!currentUser) {
+      router.push("/login")
+    } else if (currentUser.role !== "admin") {
+      router.push("/not-authorized")
+    }
+  }, [currentUser, router])
 
   useEffect(() => {
     setTimeout(() => {

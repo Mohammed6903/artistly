@@ -29,13 +29,21 @@ const categories = [
   { label: "DJ", value: "DJ" },
 ]
 
-const specialties = [
+const specialtiesOptions = [
+  { label: "Portraits", value: "Portraits" },
+  { label: "Murals", value: "Murals" },
+  { label: "Acrylic", value: "Acrylic" },
+  { label: "Bharatanatyam", value: "Bharatanatyam" },
+  { label: "Contemporary", value: "Contemporary" },
+];
+
+const languagesOptions = [
   { label: "English", value: "English" },
   { label: "Hindi", value: "Hindi" },
   { label: "Marathi", value: "Marathi" },
   { label: "Tamil", value: "Tamil" },
   { label: "Gujarati", value: "Gujarati" },
-]
+];
 
 export default function ArtistOnboardingForm() {
   const {
@@ -51,6 +59,7 @@ export default function ArtistOnboardingForm() {
       description: "",
       category: "",
       specialties: [],
+      languages: [],
       location: "",
       priceRange: { min: 0, max: 0 },
       avatar: "",
@@ -138,6 +147,28 @@ export default function ArtistOnboardingForm() {
               <motion.div variants={itemVariants} className="space-y-2">
                 <Label className="flex gap-2 items-center text-sm font-medium text-foreground">
                   <Languages className="w-4 h-4 text-primary" />
+                  Languages
+                </Label>
+                <Controller
+                  control={control}
+                  name="languages"
+                  render={({ field }) => (
+                    <MultiSelect
+                      options={languagesOptions}
+                      onValueChange={field.onChange}
+                      defaultValue={(field.value ?? []).filter((v): v is string => typeof v === "string")}
+                      placeholder="Select languages"
+                    />
+                  )}
+                />
+                {errors.languages && (
+                  <p className="text-destructive text-sm">{errors.languages.message}</p>
+                )}
+              </motion.div>
+
+              <motion.div variants={itemVariants} className="space-y-2">
+                <Label className="flex gap-2 items-center text-sm font-medium text-foreground">
+                  <Sparkles className="w-4 h-4 text-primary" />
                   Specialties
                 </Label>
                 <Controller
@@ -145,14 +176,16 @@ export default function ArtistOnboardingForm() {
                   name="specialties"
                   render={({ field }) => (
                     <MultiSelect
-                      options={specialties}
+                      options={specialtiesOptions}
                       onValueChange={field.onChange}
                       defaultValue={(field.value ?? []).filter((v): v is string => typeof v === "string")}
                       placeholder="Select specialties"
                     />
                   )}
                 />
-                {errors.specialties && <p className="text-destructive text-sm">{errors.specialties.message}</p>}
+                {errors.specialties && (
+                  <p className="text-destructive text-sm">{errors.specialties.message}</p>
+                )}
               </motion.div>
 
               <motion.div variants={itemVariants} className="space-y-2">
