@@ -57,17 +57,18 @@ export function ArtistCard({ artist, viewMode }: ArtistCardProps) {
 
                     <p className="text-muted-foreground mb-4 line-clamp-2">{artist.description}</p>
 
-                    <div className="flex items-center justify-between">
+                    <div className="flex flex-column items-center justify-between">
                       <div>
                         <p className="text-sm text-muted-foreground">Price Range</p>
                         <p className="font-semibold text-card-foreground">
                           {formatPriceRange(artist.priceRange.min, artist.priceRange.max)}
                         </p>
+                        <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
+                          <MessageCircle className="w-4 h-4 mr-2" />
+                          Ask for Quote
+                        </Button>
+
                       </div>
-                      <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
-                        <MessageCircle className="w-4 h-4 mr-2" />
-                        Ask for Quote
-                      </Button>
                     </div>
                   </div>
                 </div>
