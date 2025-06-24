@@ -4,7 +4,10 @@ This repository contains the frontend web demo for Artistly.com, a fictional pla
 
 ## Screenshots
 ![artists listing page SEO inspection from vercel dashboard](https://github.com/user-attachments/assets/cea65c1a-b994-40b5-98fb-58d0ff7b4e55)
+*fig.1: Artists listing page SEO inspection from vercel dashboard*
+
 ![SEO for about us page](https://github.com/user-attachments/assets/b4bdd707-0491-496f-987e-76ac87cccd8a)
+*fig.2: SEO for about us page*
 
 
 ## Project Requirements Implementation
