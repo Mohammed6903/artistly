@@ -14,6 +14,15 @@ export interface Artist {
   availability: string
 }
 
+export interface HiredArtist extends Artist {
+  hiredDate: string;
+  eventName: string;
+  eventLocation: string;
+  status: "confirmed" | "pending" | "completed" | "cancelled";
+  fee: number;
+  notes?: string;
+}
+
 export interface FilterOptions {
   category: string
   location: string
