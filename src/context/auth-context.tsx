@@ -17,7 +17,7 @@ interface AuthContextProps {
   logout: () => void
 }
 
-const AuthContext = createContext<AuthContextProps | undefined>(undefined)
+export const AuthContext = createContext<AuthContextProps | undefined>(undefined)
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [users, setUsers] = useState<AuthUser[]>([])
@@ -46,10 +46,4 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       {children}
     </AuthContext.Provider>
   )
-}
-
-export const useAuth = () => {
-  const ctx = useContext(AuthContext)
-  if (!ctx) throw new Error("useAuth must be inside AuthProvider")
-  return ctx
 }

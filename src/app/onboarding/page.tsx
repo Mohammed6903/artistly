@@ -1,5 +1,6 @@
 import ArtistOnboardingForm from "@/components/form/onboarding";
 import { Metadata } from "next";
+import { BASE_URL } from "@/lib/config";
 
 export const metadata: Metadata = {
   title: 'Artist Onboarding - Join Our Platform | Artistly',
@@ -8,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Artist Onboarding - Join Our Platform',
     description: 'Join Artistly to showcase your artistic talent, connect with clients, and grow your career.',
-    url: `${process.env.NEXT_PUBLIC_BASE_URL}/onboarding`,
+    url: `${BASE_URL}/onboarding`,
     type: 'website',
   },
   twitter: {

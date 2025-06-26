@@ -9,7 +9,7 @@ import { Search, Filter, Download, Users, Calendar, DollarSign, MapPin } from "l
 import { useRouter } from "next/navigation";
 import { type HiredArtist } from "@/types/artist";
 import { hiredArtistsData } from "@/data/artists";
-import { useAuth } from "@/context/auth-context"
+import { useAuth } from "@/hooks/useAuth"
 
 export default function ManagerDashboardPage() {
   const [submissions, setSubmissions] = useState<HiredArtist[]>([]);

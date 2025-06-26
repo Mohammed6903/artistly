@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { BASE_URL } from '@/lib/config';
 
 export const metadata: Metadata = {
   title: 'About Us - Our Mission, Values & Team | Artistly',
@@ -7,11 +8,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'About Us - Artistly: Connecting Artists & Events',
     description: 'Learn about Artistly\'s mission to connect talented artists with clients across India, fostering creativity and memorable experiences.',
-    url: `${process.env.NEXT_PUBLIC_BASE_URL}/about-us`,
+    url: `${BASE_URL}/about-us`,
     siteName: 'Artistly',
     images: [
       {
-        url: `${process.env.NEXT_PUBLIC_BASE_URL}/og-about-us.png`,
+        url: `${BASE_URL}/og-about-us.png`,
         width: 1200,
         height: 630,
         alt: 'Team of Artistly working together to connect artists and events',

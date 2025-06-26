@@ -1,18 +1,11 @@
 import Image from "next/image"
 import { Star } from "lucide-react"
 import type { Artist } from "@/types/artist"
+import { getArtists } from "@/services/artistService";
 
 export async function FeaturedArtists() {
-  const res = await fetch("https://685a52ac9f6ef9611155e080.mockapi.io/artists", {
-    next: { revalidate: 86400 },
-  })
+  const data: Artist[] = await getArtists({ revalidate: 86400 });
 
-  if (!res.ok) {
-    console.error("Failed to fetch artists")
-    return <div className="text-center py-12">Unable to load featured artists.</div>
-  }
-
-  const data: Artist[] = await res.json()
   const topArtists = data
     .sort((a, b) => b.rating - a.rating)
     .slice(0, 4)
