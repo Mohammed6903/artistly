@@ -2,7 +2,15 @@
 
 This repository contains the frontend web demo for Artistly.com, a fictional platform designed to connect Event Planners with Artist Managers and performing artists. This project was developed as a frontend developer test assignment, focusing on React.js, Next.js App Router, and Tailwind CSS best practices.
 
----
+## Screenshots
+![artists listing page SEO inspection from vercel dashboard](https://github.com/user-attachments/assets/cea65c1a-b994-40b5-98fb-58d0ff7b4e55)
+*fig.1: Artists listing page SEO inspection from vercel dashboard*
+
+![SEO for about us page](https://github.com/user-attachments/assets/b4bdd707-0491-496f-987e-76ac87cccd8a)
+*fig.2: SEO for about us page*
+
+
+## Project Requirements Implementation
 
 ## ✅ Project Requirements Implementation
 
@@ -139,6 +147,7 @@ Visit `http://localhost:3000`
 
 ---
 
+<<<<<<< HEAD
 ## 🧰 Tech Stack
 
 | Tech                | Purpose                                   |
@@ -188,3 +197,6 @@ Follow CLI prompts to deploy.
 **Mohammed Usmani**
 Frontend Developer | React + Next.js Enthusiast
 [GitHub: Mohammed6903](https://github.com/Mohammed6903)
+=======
+Mohammed Usmani
+>>>>>>> 6dffb3f70f5ca02ffa0a1fa28d92744b2e5f95b4
