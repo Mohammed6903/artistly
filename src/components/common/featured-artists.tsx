@@ -12,9 +12,9 @@ export async function FeaturedArtists() {
 
   return (
     <div className="py-12 pb-24 bg-secondary text-secondary-foreground">
-      <div className="container mx-auto px-4">
+      <div className="md:container md:mx-auto px-4 sm:px-0">
         <h1 className="text-3xl sm:text-4xl font-bold mb-8 text-center">🌟 Featured Artists</h1>
-        <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-6 grid-cols-1 sm:grid-cols-1 lg:grid-cols-4">
           {topArtists.map(artist => (
             <div
               key={artist.id}

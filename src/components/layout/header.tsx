@@ -61,7 +61,7 @@ export function Header() {
 
   return (
     <motion.header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
+      className={`fixed inset-x-0 top-0 z-10 border-b border-black/5 transition-all duration-300 ${isScrolled
         ? "py-2 sm:py-3 bg-background/95 backdrop-blur-md border-b border-border shadow-sm"
         : "py-3 sm:py-4 md:py-6 bg-background/80 backdrop-blur-sm"
         }`}

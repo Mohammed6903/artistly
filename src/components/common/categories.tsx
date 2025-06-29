@@ -34,7 +34,7 @@ export function Categories() {
 
   return (
     <section className="py-24 bg-background">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto">
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
@@ -59,7 +59,7 @@ export function Categories() {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
               whileHover={{ scale: 1.02, y: -5 }}
-              className="group cursor-pointer"
+              className="group cursor-pointer pb-8 md:pb-0"
             >
               <Card className="h-full bg-card border border-border rounded-xl transition-all duration-300 group-hover:shadow-xl group-hover:border-muted">
                 <CardContent className="p-8 text-center">

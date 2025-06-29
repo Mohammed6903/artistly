@@ -21,7 +21,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </head>
+      <body className={`${inter.className} max-w-screen overflow-x-hidden`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           <AuthProvider>
             <Header />
